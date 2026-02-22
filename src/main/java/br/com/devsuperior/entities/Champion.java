@@ -1,0 +1,61 @@
+package br.com.devsuperior.entities;
+
+public class Champion {
+	private String name;
+	private int life;
+	private int attack;
+	private int armor;
+
+	public Champion(String name, int life, int attack, int armor) {
+		this.name = name;
+		this.life = life;
+		this.attack = attack;
+		this.armor = armor;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getLife() {
+		return life;
+	}
+
+	public void setLife(int life) {
+		this.life = life;
+	}
+
+	public int getAttack() {
+		return attack;
+	}
+
+	public void setAttack(int attack) {
+		this.attack = attack;
+	}
+
+	public int getArmor() {
+		return armor;
+	}
+
+	public void setArmor(int armor) {
+		this.armor = armor;
+	}
+
+	public void takeDamage(Champion other) {
+		if (armor > other.getAttack()) {
+			life--;
+		} else {
+			life -= other.getAttack() - armor;
+		}
+
+		if (life < 0) life = 0;
+	}
+
+	public String status() {
+		return String.format("%s: %d de vida %s", name, life, (life == 0 ? "(morreu)" : ""));
+	}
+}
